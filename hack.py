@@ -13,16 +13,16 @@ from sklearn.preprocessing import MinMaxScaler
 sc1 = StandardScaler()
 sc2 = MinMaxScaler()
 
-X = train.drop(columns=['Target', 'Id'], axis=1)
+X = train.drop(columns=['Target', 'Id', 'Feature 16'], axis=1)
 X = np.array(sc2.fit_transform(X))
 y = np.array(train['Target'])
 
-X_test = test.drop(columns=['Id'], axis=1)
+X_test = test.drop(columns=['Id', 'Feature 16'], axis=1)
 X_test = np.array(sc2.transform(X_test))
 
-pca = PCA(n_components=20)
-pca.fit_transform(X)
-pca.fit_transform(X_test)
+# pca = PCA(n_components=20)
+# pca.fit_transform(X)
+# pca.fit_transform(X_test)
 X_train, X_valid, y_train, y_valid = train_test_split(X, y, test_size=0.2)
 
 from sklearn.linear_model import LogisticRegression
